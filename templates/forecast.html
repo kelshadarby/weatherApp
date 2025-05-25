@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
-<h1>Temperature at {{ precipitation }}:</h1>
-{#<h2>{{ temp }} &#8457;</h2>#}
-<p>
-    <a href="{% url 'temp_somewhere' %}">Check another city!</a>
-    <a href=".">Show my locations temperature.</a>
-</p>
+<h1>Day: {{ day_precipitation }}:</h1>
+<h1>Night: {{ night_precipitation }}:</h1>
+{% if rain_alert %}
+    <h1>There's a {{ precipitation_probability_max }}% chance of rain today, no need to water!</h1>
+{% endif %}
+{% if snow_hail_alert %}
+    <h1>Hazardous conditions predicted today, protect your plants!</h1>
+{% endif %}
+{%  if uv_index > 8 %}
+    <h1>UV index is high today, find shade and don't wet the leaves of your plants, it may burn them!</h1>
+{% endif %}
+{% if wind_speed > 40 %}
+    <h1>High winds! Consider supporting some of your weaker plants, or flying a kite.</h1>
+{% endif %}
+<h2>Today's low is a temperature of {{ temp_min }} &#8457;</h2>
+<h2>Today's high is a temperature of {{ temp_max }} &#8457;</h2>
 </body>
 </html>
